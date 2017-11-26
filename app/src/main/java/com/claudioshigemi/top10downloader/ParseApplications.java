@@ -6,15 +6,16 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.StringReader;
 import java.util.ArrayList;
 
+
 /**
  * Created by Claudio on 15/11/2017.
  */
 
-public class ParseApplication {
-    private static final String TAG = "ParseApplication";
+public class ParseApplications {
+    private static final String TAG = "ParseApplications";
     private ArrayList<FeedEntry> applications;
 
-    public ParseApplication() {
+    public ParseApplications() {
         this.applications = new ArrayList<>();
     }
 
@@ -38,15 +39,17 @@ public class ParseApplication {
                 String tagName = xpp.getName();
                 switch (eventType) {
                     case XmlPullParser.START_TAG:
-                        Log.d(TAG, "parse: Starting tag for = " + tagName);
+                        Log.d(TAG, "parse: Starting tag for " + tagName);
                         if ("entry".equalsIgnoreCase(tagName)) {
                             inEntry = true;
                             currentRecord = new FeedEntry();
                         }
                         break;
+
                     case XmlPullParser.TEXT:
                         textValue = xpp.getText();
                         break;
+
                     case XmlPullParser.END_TAG:
                         Log.d(TAG, "parse: Ending tag for " + tagName);
                         if (inEntry) {
@@ -62,28 +65,31 @@ public class ParseApplication {
                             } else if ("summary".equalsIgnoreCase(tagName)) {
                                 currentRecord.setSummary(textValue);
                             } else if ("image".equalsIgnoreCase(tagName)) {
-                                currentRecord.setImageUrl(textValue);
+                                currentRecord.setImageURL(textValue);
                             }
                         }
                         break;
+
                     default:
+                        // Nothing else to do.
                 }
                 eventType = xpp.next();
+
             }
             for (FeedEntry app : applications) {
-                Log.d(TAG, "**************");
+                Log.d(TAG, "******************");
                 Log.d(TAG, app.toString());
             }
-
 
         } catch (Exception e) {
             status = false;
             e.printStackTrace();
         }
+
         return status;
     }
-
 }
+
 
 
 

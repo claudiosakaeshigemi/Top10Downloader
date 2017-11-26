@@ -5,11 +5,12 @@ package com.claudioshigemi.top10downloader;
  */
 
 public class FeedEntry {
+
     private String name;
     private String artist;
     private String releaseDate;
     private String summary;
-    private String imageUrl;
+    private String imageURL;
 
     public String getName() {
         return name;
@@ -43,20 +44,19 @@ public class FeedEntry {
         this.summary = summary;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
-    @Override
-    public String toString() {
-        return
-                "name='" + name + '\n' +
-                ", artist='" + artist + '\n' +
-                ", releaseDate='" + releaseDate + '\n' +
-                ", imageUrl='" + imageUrl + '\n' ;
-    }
+//    @Override
+//    public String toString() {
+//        return "name=" + name + '\n' +
+//                ", artist=" + artist + '\n' +
+//                ", releaseDate=" + releaseDate + '\n' +
+//                ", imageURL=" + imageURL + '\n';
+//    }
 }
